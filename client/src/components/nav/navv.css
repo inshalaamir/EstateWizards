@@ -1,0 +1,25 @@
+nav{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height: 10vh;
+    background:rgb(73,79,82);
+    color:white
+  
+  }
+  .nav-links{
+    width:50%;
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+    list-style: none;
+  }
+
+  .link-style{
+    color:white
+  }
+  
+  .show>.dropdown-menu {
+    display: block;
+    position: absolute;
+  }
