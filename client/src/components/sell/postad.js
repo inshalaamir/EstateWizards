@@ -5,9 +5,38 @@ import {Redirect} from "react-router-dom"
 import axios from "axios"
 import './postad.css'
 import Viewer from './viewer/viewer.js'
+import MapGL, {Marker, NavigationControl} from 'react-map-gl';
+import ReactMapGL from 'react-map-gl'
+import Geocoder from 'react-mapbox-gl-geocoder';
+import { Container, Col, Row } from 'reactstrap';
+import './styles.css'
+import a from './pinn.svg'
+import Pin from './map/pin.js'
+import myPin from './mappin/pin.js'
+
+
+const locations={
+  Islamabad:[33.6938118,73.0651511],
+  Rawalpindi:[33.5914237,73.0535122],
+  Karachi:[24.860735,67.001137],
+  Lahore:[31.520370,74.358749],
+  Faisalabad:[31.450365,73.134964],
+  Peshawar:[34.0123846,71.5787458]
+}
+const rawalpindi=[33.5651,73.0169]
 
 
 
+const params = {
+  country: "pk"
+}
+
+const TOKEN = 'pk.eyJ1Ijoic2hhcmplZWwxNDciLCJhIjoiY2tscDEzc3hkMG9odTJwcW1qNWprYmRpcSJ9.MizejsxjX0IQfEqBlBO9mg'; // Set your mapbox token here
+
+const mapStyle = {
+  width: '100%',
+  height: 400,
+}
 
 
 export class Postad extends React.Component {
@@ -32,6 +61,15 @@ export class Postad extends React.Component {
             sell:false,
             portions : 1,
             post:false,
+            latlong:locations.Rawalpindi,
+            viewport:{
+              width:'100vw',
+              height:'100vh',
+              latitude:33.5914237,
+              longitude:73.0535122,
+              zoom:12
+            },
+            loc:false
         };
     }
 
@@ -91,7 +129,11 @@ export class Postad extends React.Component {
       const bathrooms=this.state.bathrooms.toString()
       const price=this.state.price.toString()
       const pictures=this.state.pictures
-      const body={type,propertytype,portions,title,description,location,area,rooms,bathrooms,price,pictures}
+      var latlong=[]
+      if(this.state.loc==true){
+        latlong=this.state.latlong
+      }
+      const body={type,propertytype,portions,title,description,location,area,rooms,bathrooms,price,pictures,latlong}
       this.setState({post:true})
     
       const res=await axios.post("http://localhost:5000/post/postad",body,config)
@@ -115,6 +157,21 @@ export class Postad extends React.Component {
       
       
         this.setState({[e.target.name] : e.target.value});
+
+        if(e.target.name=='location'){
+
+          console.log('location change')
+          const city=e.target.value
+          this.setState({latlong:locations[city]})
+          this.setState({viewport:{
+            width:'100vw',
+            height:'100vh',
+            latitude:locations[city][0],
+            longitude:locations[city][1],
+            zoom:12
+          }})
+          this.setState({loc:false})
+        }
       
 
     }
@@ -123,7 +180,7 @@ export class Postad extends React.Component {
       
         
         this.setState({[e.target.name] : e.target.checked});
-        
+         
   
       }
 
@@ -189,6 +246,24 @@ export class Postad extends React.Component {
       const newImgs = this.state.pictures.filter(img => img!== key)
       this.setState({pictures: newImgs})
     }
+   
+
+    
+
+    setboth=(e)=>{
+    console.log(e)
+    console.log(this.state.latlong)
+    const loc=[e.lngLat[1],e.lngLat[0]]
+    this.setState({latlong:loc,loc:true})
+  
+    }
+  
+  
+    onSelected = (viewport) => {
+        this.setState({viewport:viewport})
+    }
+
+    
   
     render() {
 
@@ -201,10 +276,10 @@ export class Postad extends React.Component {
       ))
 
       return (
-        <div>
+        <div className="post__back">
           {!this.state.loggedin? <Redirect to="/signin"/>:''}
           {this.state.created? <Redirect to="/"/>:''}
-
+          <div className="container main__post">
             <div className="container mt-2">
               <div className="row">
                     <div className="col-sm text-right">Sell</div> 
@@ -252,8 +327,8 @@ export class Postad extends React.Component {
                     </div>
                 </div>
                 {this.state.propertytype=="House" || this.state.propertytype=="Office" || this.state.propertytype=="Shop" ? 
-                <div className="container text-center">
-                  <div className="row justify-content-center">
+                <div className="container text-center col-md-8">
+                  <div className="row justify-content-between">
                     <label for="counter">Number of portions: </label>
                     <div className="input-group col-md-6" name="counter">
                     <input type="text" id="disabledTextInput" className="form-control" placeholder={this.state.portions} disabled/>
@@ -269,8 +344,8 @@ export class Postad extends React.Component {
 
                 {this.state.propertytype=="House" || this.state.propertytype=="Office" || this.state.propertytype=="Shop" || this.state.propertytype=="Flat/Apartment"? 
                 
-                <div className="container text-center mt-2">
-                  <div className="row justify-content-center">
+                <div className="container text-center mt-2 col-md-8">
+                  <div className="row justify-content-between">
                     <label for="counter">Number of Rooms: </label>
                     <div className="input-group col-md-6" name="counter">
                     <input type="text" id="disabledTextInput" className="form-control" placeholder={this.state.rooms} disabled/>
@@ -282,7 +357,7 @@ export class Postad extends React.Component {
                   </div>
                 
                 
-                  <div className="row justify-content-center mt-2">
+                  <div className="row justify-content-between mt-2">
                     <label for="counter">Number of Bathrooms: </label>
                     <div className="input-group col-md-6" name="counter">
                     <input type="text" id="disabledTextInput" className="form-control" placeholder={this.state.bathrooms} disabled/>
@@ -316,7 +391,7 @@ export class Postad extends React.Component {
                     </div>
                   </div>
                    }
-                <div className="container text-left mt-5" >  
+                <div className="container text-left mt-5 mb-5" >  
                   <div className="form-group">
                     <label for="exampleFormControlInput1">Title</label>
                     <input name="title" value={this.state.title} type="text" onChange={this.handleChange} className="form-control" id="exampleFormControlInput1" placeholder="A short but informative title e.g Recently built, spacious 2 story house for sale in Bahria Town"/>
@@ -330,6 +405,54 @@ export class Postad extends React.Component {
                   <FileBase type="files"  multiple={true} onDone={(files)=> this.addpics(files)  }> </FileBase>
                   {imgList}
 
+                  <div>
+                  <Row className="py-4">
+                    
+                      <label>Search Address:      </label>
+                      <Geocoder
+                        
+                        mapboxApiAccessToken={TOKEN}
+                        onSelected={this.onSelected}
+                        viewport={this.state.viewport}
+                        hideOnSelect={true}
+                        value=""
+                        queryParams={params}
+                                  
+                      />
+                    
+                  </Row>
+
+                  <Row>
+                    <Col>
+                      <label></label>
+                      <ReactMapGL
+                      {...this.state.viewport}
+                      {...mapStyle}
+                      onViewportChange={(viewport=>{this.setState({viewport:viewport})})}
+                      mapStyle="mapbox://styles/sharjeel147/cklzer9lo25y417o8sit2sll0"
+                      mapboxApiAccessToken={TOKEN} 
+                      onClick={this.setboth}
+                      
+                      >
+
+                      <Marker
+                        
+                        latitude={Number(this.state.latlong[0])}
+                        longitude={Number(this.state.latlong[1])}>
+                      
+                        <Pin size={30}/>
+                        <myPin size={30}/>
+                        
+                      </Marker>
+                      <NavigationControl/>
+
+                    </ReactMapGL>
+                    
+                    </Col>
+                  </Row>
+                    
+                  </div>
+
                   <div className="form-group mt-3">
                     <button type="button" class="btn btn-success" onClick={this.createpost} disabled={this.state.post}>Post ad</button>
                   </div>
@@ -341,7 +464,7 @@ export class Postad extends React.Component {
                   
 
             </div>
-
+          </div>     
             
         </div>
 

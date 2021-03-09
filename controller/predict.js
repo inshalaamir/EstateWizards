@@ -10,7 +10,7 @@ exports.predict=async (req,res)=>{
       args: req.body.inputt
     };
 
-    PythonShell.run('D:/EW/controller/prediction model/predict.py', options, function (err, results) {
+    PythonShell.run('D:/EW/controller/prediction model2/predict.py', options, function (err, results) {
       if (err) 
         throw err;
       
