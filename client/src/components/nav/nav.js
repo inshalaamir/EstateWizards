@@ -2,6 +2,7 @@ import "./navv.css";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import { useHistory } from 'react-router-dom';
+import Logo from "../../assets/EWLogo.svg"
 
 
 
@@ -32,8 +33,8 @@ export default function Nav(){
 
         // </nav>
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-success">
-  <a className="navbar-brand" href="/">&nbsp;<i className="fas fa-home"></i></a>
+        <nav className="navbar navbar-expand-lg navbar-light bg-white">
+  <a className="navbar-brand" href="/"><img src={Logo} width="100" height="50" alt="logo"></img></a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
@@ -47,40 +48,45 @@ export default function Nav(){
       <Link className="link-style ml-3" to="/rent">
       <li>RENT</li>    
       </Link>
+      <Link className="link-style ml-3" to="/viewmap">
+      <li>PROPERTY FINDER </li>    
+      </Link>
       <Link className="link-style ml-3" to="/createad">
       <li>ADVERTISE</li>    
       </Link>
-      <Link className="link-style ml-3" to="/">
+      <Link className="link-style ml-3" to={{pathname:"/placestostay"}}>
       <li>PLACES TO STAY</li>    
       </Link>
-      <Link className="link-style ml-3" to="/">
+      <Link className="link-style ml-3" to="/host">
       <li>BECOME A HOST</li>    
       </Link>
       
 
     </ul>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          More
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <div class="btn-group">
+      <button type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        More
+      </button>
+      <div class="dropdown-menu">
           <li class="nav-item">
-            <Link to='/predict'>Predict property price</Link>
+            <Link class="dropdown-item" to='/predict'>Predict property price</Link>
           </li>
-        </div>
-      </li>
-    {loggedin?<li class="nav-item dropdown" style={{marginRight:'50px'}}>
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Account
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>: 
-  <button className="btn btn-outline-danger my-2 my-sm-0 text-white" style={{marginRight:'50px'}} onClick={() => history.push('/signin')} >Sign in</button>}
+      </div>
+    </div>
+    {loggedin?
+    <div class="btn-group" style={{marginRight:'50px', marginLeft:"5px"}}>
+  <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Account
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Inbox</a>
+    <a class="dropdown-item" href="#">Liked posts</a>
+    <a class="dropdown-item" href="#">Account settings</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Logout</a>
+  </div>
+  </div>: 
+  <button className="btn btn-sm btn-outline-success my-2 my-sm-0 text-success signin" style={{marginRight:'50px', marginLeft:"5px"}} onClick={() => history.push('/signin')} >Sign in</button>}
     
   </div>
   

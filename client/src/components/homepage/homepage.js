@@ -21,7 +21,7 @@ const Homepage=()=>{
     return(
       <div className="back">
 
-       <div className="content" style={{width: '70%', height:'100%', margin:'auto', marginTop:'180px', justifyContent:'center', alignItems:'center'}} >
+       <div className="content">
          <h2 className="title">Estate Wizards</h2>
          <div className="row">
            <div className="col-md-5">
@@ -48,7 +48,7 @@ const Homepage=()=>{
            </div>
 
            <div className="col-md-2">
-           <button className="btn btn-danger text-white" onClick={() => history.push({pathname:'/displayads', state:{location: location, propertytype: type, type: "sell"  }})} >&nbsp;<i className="fas fa-search"></i></button>
+           <button className="btn btn-danger text-white search" onClick={() => history.push({pathname:'/displayads', state:{location: location, propertytype: type, type: "sell"  }})} >&nbsp;<i className="fas fa-search"></i></button>
            </div>
           </div>
 

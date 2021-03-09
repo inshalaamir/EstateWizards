@@ -7,11 +7,11 @@ exports.createPost = async (req , res) => {
     
     try{
         console.log( req.body.propertytype + req.body.location + req.body.portions + req.body.area + req.body.bathrooms + req.body.title)
-        var { type,propertytype,portions,title, description, location,area, rooms, bathrooms, price,pictures } = req.body;
+        var { type,propertytype,portions,title, description, location,area, rooms, bathrooms, price,pictures,latlong } = req.body;
 
         const user = await User.findById(req.user.id).select("-password")
     
-        var post = new Post({type,propertytype,portions,title, description, location,area, rooms, bathrooms, price,pictures, phoneno: user.phoneno, email: user.email, user: req.user.id });
+        var post = new Post({type,propertytype,portions,title, description, location,area, rooms, bathrooms, price,pictures,latlong, phoneno: user.phoneno, email: user.email, user: req.user.id });
         await post.save();
         res.status(200).json({success:true});
 
@@ -60,6 +60,22 @@ exports.findByBoth = async(req,res) => {
         const posts = await Post.find({type: req.params.type, location: req.params.location, propertytype: req.params.propertytype})
         console.log(Object.keys(posts).length)
         res.status(200).json({posts:Object.values(posts)})
+    } catch (error) {
+        res.status(404).json({msg: error.message})
+    }
+}
+exports.findByLatlong=async(req,res)=>{
+    try {
+        console.log(req.params)
+        const posts = await Post.find({type: req.params.type,propertytype: req.params.propertytype})
+        console.log(Object.values(posts).length)
+        const arr=Object.values(posts)
+        //console.log(arr[arr.length-1])
+        const result = arr.filter(function(e){
+            return e.latlong.length>0
+        });
+        console.log(result.length)
+        res.status(200).json({posts:result})
     } catch (error) {
         res.status(404).json({msg: error.message})
     }

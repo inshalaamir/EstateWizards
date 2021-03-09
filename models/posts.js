@@ -47,6 +47,9 @@ const PostSchema = new mongoose.Schema({
         type:[String],
         required:true
     },
+    latlong:{
+        type:[Number]
+    },
     
     phoneno: {
         type: String,

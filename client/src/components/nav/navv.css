@@ -4,7 +4,8 @@ nav{
     align-items:center;
     min-height: 10vh;
     background:rgb(73,79,82);
-    color:white
+    color:white;
+    font-family: "Raleway";
   
   }
   .nav-links{
@@ -16,10 +17,34 @@ nav{
   }
 
   .link-style{
-    color:white
+    color: black;
+    text-decoration: none;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+  }
+
+  .link-style:hover{
+    text-decoration: none;
+    border-radius: 500px;
+    background-color: var(--green);
+    color: ghostwhite;
+    transition: color 200ms ease-out;
+    transition: background-color 200ms ease-out;
   }
   
+  .navbar-brand > img {
+    width: 120px !important;
+    height: 55px !important;
+    padding: 0px !important;
+
+  }
+
   .show>.dropdown-menu {
     display: block;
     position: absolute;
+  }
+
+  .signin:hover{
+    color: ghostwhite !important;
   }
