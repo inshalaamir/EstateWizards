@@ -1,14 +1,20 @@
 import "./navv.css";
 import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useSelector,useDispatch} from "react-redux";
 import { useHistory } from 'react-router-dom';
 import Logo from "../../assets/EWLogo.svg"
-
+import logout from "../logout/logout";
+import {loggedout, loggoutout} from "../../actions/index"
 
 
 export default function Nav(){
   const history = useHistory()
     const loggedin=useSelector(state=>state.authreducer.islogged)
+    const dispatch=useDispatch()
+    const logout=()=>{
+        dispatch(loggedout())
+    }
+
     return( 
         // <nav>
         //     <h3>Logo</h3>
@@ -34,7 +40,7 @@ export default function Nav(){
         // </nav>
 
         <nav className="navbar navbar-expand-lg navbar-light bg-white">
-  <a className="navbar-brand" href="/"><img src={Logo} width="100" height="50" alt="logo"></img></a>
+  <Link className="navbar-brand" to="/"><img src={Logo} width="100" height="50" alt="logo"></img></Link>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
@@ -46,7 +52,7 @@ export default function Nav(){
       <li className="nav-item">BUY</li>    
       </Link>
       <Link className="link-style ml-3" to="/rent">
-      <li>RENT</li>    
+      <li>RENT</li>     
       </Link>
       <Link className="link-style ml-3" to="/viewmap">
       <li>PROPERTY FINDER </li>    
@@ -60,6 +66,10 @@ export default function Nav(){
       <Link className="link-style ml-3" to="/host">
       <li>BECOME A HOST</li>    
       </Link>
+      <Link className="link-style ml-3" to="/newprojects">
+      <li>NEW PROJECTS</li>    
+      </Link>
+      
       
 
     </ul>
@@ -71,6 +81,9 @@ export default function Nav(){
           <li class="nav-item">
             <Link class="dropdown-item" to='/predict'>Predict property price</Link>
           </li>
+          <li class="nav-item">
+            <Link class="dropdown-item" to='/pricetrends'>Price trends</Link>
+          </li>
       </div>
     </div>
     {loggedin?
@@ -79,11 +92,12 @@ export default function Nav(){
     Account
   </button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Inbox</a>
-    <a class="dropdown-item" href="#">Liked posts</a>
-    <a class="dropdown-item" href="#">Account settings</a>
+    <Link class="dropdown-item" to="/messenger">Inbox</Link>
+    <Link class="dropdown-item" to="/">Liked posts</Link>
+    <Link class="dropdown-item" to="/notifications"> Notifications</Link> 
+    <Link class="dropdown-item" to="/">Account settings</Link>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Logout</a>
+    <Link class="dropdown-item"to="/" onClick={()=>logout()}>Logout</Link>
   </div>
   </div>: 
   <button className="btn btn-sm btn-outline-success my-2 my-sm-0 text-success signin" style={{marginRight:'50px', marginLeft:"5px"}} onClick={() => history.push('/signin')} >Sign in</button>}

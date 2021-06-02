@@ -14,6 +14,11 @@ export const loggedout=()=>{
     }
 }
 
+export const forAdmin=()=>{
+    return{
+        type:"admin"
+    }
+}
 
 
 

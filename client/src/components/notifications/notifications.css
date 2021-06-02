@@ -1,0 +1,14 @@
+.bar__notifications{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.bar__notifications > h5 {
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.bar__notifications > .activated{
+    border-bottom: 1px solid green;
+}

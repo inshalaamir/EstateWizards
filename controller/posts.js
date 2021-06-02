@@ -83,8 +83,7 @@ exports.findByLatlong=async(req,res)=>{
 
 exports.myPosts = async (req, res) => {
     try {
-        const posts = await Post.find({ user: req.user.id });
-        console.log("Tatta");        
+        const posts = await Post.find({ user: req.user.id });        
         res.status(200).json(posts);
         
     } catch (error) {

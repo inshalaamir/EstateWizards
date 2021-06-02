@@ -1,0 +1,10 @@
+.notification{
+    border-bottom: 1px solid gray;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: left;
+    padding-left: 10px;
+}

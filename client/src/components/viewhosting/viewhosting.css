@@ -1,0 +1,128 @@
+.viewHosting{
+    background-color: #2ECC71;
+    font-family: 'raleway', Courier, monospace;
+    height: 100vh;
+}
+
+.viewHosting__loading{
+    background-color: #2ECC71;
+    height: 100vh;
+    position: relative;
+  
+}
+
+.viewHosting__info{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.viewHosting__title{
+    font-weight: 400;
+    font-size: 40px;
+    color: white;
+    text-transform: uppercase;
+    font-family:'raleway', Courier, monospace;
+}
+
+.viewHosting__price{
+    color: white;
+    font-size: 20px;
+}
+
+.viewHosting__toggle{
+    margin-top: 60px;
+    font-weight: 600;
+}
+
+.viewHosting__button1{
+    background-color:  #2ECC71;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    border-right: 1px solid white;
+    font-weight: 600;
+}
+
+.viewHosting__button1on{
+    background-color:  #2ECC71;
+    color: #FFAE00;
+    border: none;
+    text-transform: uppercase;
+    text-decoration: underline;
+    border-right: 1px solid white;
+    font-weight: 600;
+}
+
+.viewHosting__button2{
+    background-color:  #2ECC71;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.viewHosting__button2on{ 
+    background-color:  #2ECC71;
+    color: #FFAE00;
+    border: none;
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.viewHosting__text{
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.viewHosting__description{
+    text-align: center;
+    color: white;
+}
+
+.viewHosting__details{
+    text-align: center;
+    color: white;
+}
+
+.viewHosting__buttons{
+    margin-top: 40px;
+}
+
+.viewHosting__message{
+    background-color: #FFC300;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+.viewHosting__message:hover{
+    background-color: #FFD037;
+}
+
+.viewHosting__reservation{
+    background-color: #2FC32A ;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 5px;
+}
+
+.viewHosting__reservation:hover{
+    background-color: #53C54F;
+}
+
+.viewHosting__cancel{
+    background-color: #E32424  ;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 5px;
+}
+
+.viewHosting__cancel:hover{
+    background-color: #E54747 ;
+}
+

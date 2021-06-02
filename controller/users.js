@@ -135,3 +135,44 @@ exports.getUserById = async (req,res) => {
     }
 }
 
+exports.addBid = async (req,res) => {
+    try {
+        console.log("1")
+        const {userid,postid,bid}=req.params
+        const user = await User.findById(userid)
+        const post = await Post.findById(postid)
+        if(!user || !post){
+            res.status(404).json({msg: "User not found"})
+        }
+        console.log("2")
+        var bids = user.bids
+
+        var obj1 ={
+            post: post,
+            bid: bid
+        }
+
+        bids.push(obj1)
+
+        var bids2 = post.bids
+
+        var obj2 = {
+            user: user,
+            bid: bid
+        }
+
+        bids2.push(obj2)
+
+        await User.updateOne({_id: userid}, {$set: {bids: bids}})
+        console.log("3")
+        await Post.updateOne({_id: postid}, {$set: {bids: bids2}})
+        console.log("4")
+
+        res.status(200).json({success:true})
+    }
+    catch(error){
+        console.log(error.message)
+        res.status(404).json({ message: error.message});
+    }
+}
+

@@ -58,10 +58,16 @@ const PostSchema = new mongoose.Schema({
     email:{
         type: String,
     },
-
+    
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
+    },
+    bids:{
+        type:[{
+            user:{type:mongoose.Schema.Types.ObjectId, ref: "user"},
+            bid:{type:String}
+        }]
     },
 
     date: {
@@ -70,5 +76,5 @@ const PostSchema = new mongoose.Schema({
     }
 })
 
-Post = mongoose.model('Post', PostSchema)
+Post = mongoose.model('post', PostSchema)
 module.exports = Post

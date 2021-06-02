@@ -329,7 +329,7 @@ export class Postad extends React.Component {
                 {this.state.propertytype=="House" || this.state.propertytype=="Office" || this.state.propertytype=="Shop" ? 
                 <div className="container text-center col-md-8">
                   <div className="row justify-content-between">
-                    <label for="counter">Number of portions: </label>
+                    <label for="counter" style={{color:"black"}}>Number of portions: </label>
                     <div className="input-group col-md-6" name="counter">
                     <input type="text" id="disabledTextInput" className="form-control" placeholder={this.state.portions} disabled/>
                       <div className="input-group-append">
@@ -346,7 +346,7 @@ export class Postad extends React.Component {
                 
                 <div className="container text-center mt-2 col-md-8">
                   <div className="row justify-content-between">
-                    <label for="counter">Number of Rooms: </label>
+                    <label for="counter" style={{color:"black"}}>Number of Rooms: </label>
                     <div className="input-group col-md-6" name="counter">
                     <input type="text" id="disabledTextInput" className="form-control" placeholder={this.state.rooms} disabled/>
                       <div className="input-group-append">
@@ -358,7 +358,7 @@ export class Postad extends React.Component {
                 
                 
                   <div className="row justify-content-between mt-2">
-                    <label for="counter">Number of Bathrooms: </label>
+                    <label for="counter" style={{color:"black"}}>Number of Bathrooms: </label>
                     <div className="input-group col-md-6" name="counter">
                     <input type="text" id="disabledTextInput" className="form-control" placeholder={this.state.bathrooms} disabled/>
                       <div className="input-group-append">
@@ -372,20 +372,20 @@ export class Postad extends React.Component {
                 }
 
                   <div className="row justify-content-center mt-2">
-                  <label for="area">Area (In marla): </label>
+                  <label for="area" style={{color:"black"}}>Area (In marla): </label>
                     <div className="input-group col-md-6" name="area">
                       <input className="form-control form-control-sm" name="area" value={this.state.area} type="number" placeholder="" onChange={this.handleChange}></input>
                     </div>
                   </div>
                 {this.state.sell? 
                   <div className="row justify-content-center mt-2">
-                  <label for="area">Rent (Rupees per month): </label>
+                  <label for="area" style={{color:"black"}}>Rent (Rupees per month): </label>
                     <div className="input-group col-md-6" name="price">
                       <input className="form-control form-control-sm" name="price" value={this.state.price} type="number" placeholder="" onChange={this.handleChange}></input>
                     </div>
                   </div>:
                   <div className="row justify-content-center mt-2">
-                  <label for="area">Price (Rupees): </label>
+                  <label for="area" style={{color:"black"}}>Price (Rupees): </label>
                     <div className="input-group col-md-6" name="price">
                       <input className="form-control form-control-sm" name="price" value={this.state.price} type="number" placeholder="" onChange={this.handleChange}></input>
                     </div>
@@ -408,7 +408,7 @@ export class Postad extends React.Component {
                   <div>
                   <Row className="py-4">
                     
-                      <label>Search Address:      </label>
+                      <label style={{color:"black"}}>Search Address:      </label>
                       <Geocoder
                         
                         mapboxApiAccessToken={TOKEN}

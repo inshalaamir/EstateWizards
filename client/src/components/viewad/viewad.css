@@ -1,0 +1,165 @@
+.viewad{
+    background-color: #2ECC71;
+    font-family: 'raleway', Courier, monospace;
+    height: 100%;
+}
+
+.viewad__loading{
+    background-color: #2ECC71;
+    height: 100vh;
+    position: relative;
+  
+}
+
+.viewad__info{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.viewad__title{
+    font-weight: 400;
+    font-size: 40px;
+    color: white;
+    text-transform: uppercase;
+    font-family:'raleway', Courier, monospace;
+}
+
+.viewad__price{
+    color: white;
+    font-size: 20px;
+}
+
+.viewad__toggle{
+    margin-top: 60px;
+    font-weight: 600;
+}
+
+.viewad__button1{
+    background-color:  #2ECC71;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    border-right: 1px solid white;
+    font-weight: 600;
+}
+
+.viewad__button1on{
+    background-color:  #2ECC71;
+    color: #FFAE00;
+    border: none;
+    text-transform: uppercase;
+    text-decoration: underline;
+    border-right: 1px solid white;
+    font-weight: 600;
+}
+
+.viewad__button2{
+    background-color:  #2ECC71;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.viewad__button2on{ 
+    background-color:  #2ECC71;
+    color: #FFAE00;
+    border: none;
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.viewad__text{
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.viewad__description{
+    text-align: center;
+    color: white;
+}
+
+.viewad__details{
+    text-align: center;
+    color: white;
+}
+
+.viewad__buttons{
+    margin-top: 40px;
+}
+
+.viewad__message{
+    background-color: #FFC300;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+.viewad__message:hover{
+    background-color: #FFD037;
+}
+
+.viewad__reservation{
+    background-color: #2FC32A ;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 5px;
+}
+
+.viewad__reservation:hover{
+    background-color: #53C54F;
+}
+
+.viewad__cancel{
+    background-color: #E32424  ;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 5px;
+}
+
+.viewad__cancel:hover{
+    background-color: #E54747 ;
+}
+
+.viewad__footer{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.placebid{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.viewad__bid{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.bid__inputsection{
+    display: flex;
+    justify-content: center;
+}
+
+.bid__input{
+    max-width: 30%;
+}
+.bid__button{
+    margin-top: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+}
+
+.bid__button:hover{
+    background-color: #E54747;
+}

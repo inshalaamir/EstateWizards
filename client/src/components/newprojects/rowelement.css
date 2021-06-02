@@ -1,0 +1,11 @@
+.rowelement__image{
+    max-height: 300px;
+    object-fit: contain;
+    margin-right: 30px;
+    width: 100%;
+    transition: transform 300ms;
+}
+
+.rowelement{
+    margin-right: 50px;
+}
