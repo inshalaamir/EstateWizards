@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import {Redirect} from "react-router-dom"
 import {useSelector,useDispatch} from "react-redux";
-import {signedin} from "../../actions"
+import {signedin, forAdmin} from "../../actions"
 import {Link} from "react-router-dom";
+import {useHistory} from 'react-router-dom'
+
 
 export default function Signin(){
     const dispatch=useDispatch();
+    const history = useHistory()
     
 
     const [loginData, SetLoginData] = useState({
@@ -25,15 +28,19 @@ export default function Signin(){
       };
     
       const body = {email, password}
-      console.log(body);
       
+      if(email=="admin@EW" && password=="12345"){
+        dispatch(forAdmin())
+        history.push({pathname:'/admin'})
+      }
+      else{
     
       const res=await axios.post("http://localhost:5000/user/signin",body,config)
       console.log(res.data);
       SetLoginData({ ...loginData, dataa:res.data.userid});
       if(res.data.success){
         
-        const recieveddata={id:res.data.userid,name:res.data.name,location:res.data.location,token:res.data.token}
+        const recieveddata={id:res.data.userid,name:res.data.name,location:res.data.location,token:res.data.token, }
         dispatch(signedin(recieveddata))
         alert("login sucessfull")
         if(recieveddata){
@@ -45,7 +52,7 @@ export default function Signin(){
         SetLoginData({ ...loginData, alert:true})
       }
       
-      
+    }
     }
 
     
@@ -126,3 +133,4 @@ export default function Signin(){
         
     )
 }
+

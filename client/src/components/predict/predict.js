@@ -6,6 +6,9 @@ import Geocoder from 'react-mapbox-gl-geocoder';
 import Pin from '../sell/map/pin.js'
 import { Container, Col, Row } from 'reactstrap';
 import { Alert } from 'reactstrap';
+import "./predict.css"
+import { BlockLoading } from 'react-loadingg';
+
 
 const locations={
   Islamabad:[33.6938118,73.0651511],
@@ -39,7 +42,9 @@ export default class Prediction extends React.Component{
           zoom:12
         },
         price:"0",
-        success:false}
+        success:false,
+        calculating: false,
+      }
 
     }
 
@@ -75,9 +80,8 @@ export default class Prediction extends React.Component{
        
   
         const res=await axios.post("http://localhost:5000/predict",body,config)
-        console.log(res.data);
         if(res.data.success){
-          this.setState({price: res.data.price,success:true})
+          this.setState({price: res.data.price,success:true, calculating:false})
           
           
           
@@ -112,10 +116,9 @@ export default class Prediction extends React.Component{
   
     }
   
-    handleSubmit = (e) => {
-        console.log(this.state)
-        
+    handleSubmit = (e) => {    
         e.preventDefault();
+        this.setState({calculating:true})
         this.fetchprice()
   
     }
@@ -168,11 +171,11 @@ export default class Prediction extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className="predict">
                 
                 <form onSubmit={this.handleSubmit}>
 
-                   <div className="container mt-3">
+                   <div className="container mt-2" style={{padding:"30px"}}>
                     <div className="form-group">
                         <label for="type">Choose property type: </label>
                         <select className="col-md-4"  name='type' value={this.state.type} onChange={this.handleChange}>
@@ -195,7 +198,7 @@ export default class Prediction extends React.Component{
                     </div>
                     <div className="container text-center mt-2">
                   <div className="row justify-content-center">
-                    <label for="counter">Number of Rooms: </label>
+                    <label for="counter" style={{color: "white"}}>Number of Rooms: </label>
                     <div className="input-group col-md-6" name="counter">
                     <input type="text" id="disabledTextInput" className="form-control" placeholder={this.state.rooms} disabled/>
                       <div className="input-group-append">
@@ -207,7 +210,7 @@ export default class Prediction extends React.Component{
                 
                 
                   <div className="row justify-content-center mt-2">
-                    <label for="counter">Number of Bathrooms: </label>
+                    <label for="counter" style={{color: "white"}}>Number of Bathrooms: </label>
                     <div className="input-group col-md-6" name="counter">
                     <input type="text" id="disabledTextInput" className="form-control" placeholder={this.state.bathrooms} disabled/>
                       <div className="input-group-append">
@@ -220,7 +223,7 @@ export default class Prediction extends React.Component{
 
    
                 <div className="row justify-content-center mt-2">
-                  <label for="area">Area (In marla): </label>
+                  <label for="area" style={{color: "white"}}>Area (In marla): </label>
                     <div className="input-group col-md-6" name="area">
                       <input className="form-control form-control-sm" name="area" value={this.state.area} type="number" placeholder="" onChange={this.handleChange}></input>
                     </div>
@@ -230,7 +233,7 @@ export default class Prediction extends React.Component{
                 <br></br>
                 <br></br>                
                 <div className="row justify-content-center mt-2">
-                    <label>Search Address:      </label>
+                    <label style={{color:"white"}}>Search Address:      </label>
                     <Geocoder
                       
                       mapboxApiAccessToken={TOKEN}
@@ -273,18 +276,23 @@ export default class Prediction extends React.Component{
                   </Col>
                 </Row>
 
-                <br></br>
+                
 
 
                 </div>
 
-                  <input type="submit" value="Submit" />
-
+                  <input type="submit" value="Submit" style={{"margin-bottom":"20px", "margin-top": "20px" }} />
+                  {this.state.calculating?
+                  <BlockLoading style={{"position": "none", 
+                                        "margin-left": "auto", 
+                                        "margin-right": "auto"} } />:
+                        ""}
 
                 </div>
 
-                </form>
-                <br></br>
+                </form> 
+                
+                
                 
                 {this.state.success?
                 <Alert color="info">

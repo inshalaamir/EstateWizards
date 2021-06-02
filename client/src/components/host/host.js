@@ -215,7 +215,7 @@ export class Host extends React.Component {
                 
                 <div className="container text-center">
                   <div className="row justify-content-center">
-                    <label for="counter">Number of portions: </label>
+                    <label for="counter" style={{color: "black"}}>Number of portions: </label>
                     <div className="input-group col-md-6" name="counter">
                     <input type="text" id="disabledTextInput" className="form-control" placeholder={this.state.portions} disabled/>
                       <div className="input-group-append">
@@ -232,7 +232,7 @@ export class Host extends React.Component {
                 
                 <div className="container text-center mt-2">
                   <div className="row justify-content-center">
-                    <label for="counter">Number of Rooms: </label>
+                    <label for="counter" style={{color: "black"}}>Number of Rooms: </label>
                     <div className="input-group col-md-6" name="counter">
                     <input type="text" id="disabledTextInput" className="form-control" placeholder={this.state.rooms} disabled/>
                       <div className="input-group-append">
@@ -244,7 +244,7 @@ export class Host extends React.Component {
                 
                 
                   <div className="row justify-content-center mt-2">
-                    <label for="counter">Number of Bathrooms: </label>
+                    <label for="counter" style={{color: "black"}}>Number of Bathrooms: </label>
                     <div className="input-group col-md-6" name="counter">
                     <input type="text" id="disabledTextInput" className="form-control" placeholder={this.state.bathrooms} disabled/>
                       <div className="input-group-append">
@@ -260,7 +260,7 @@ export class Host extends React.Component {
                   
                  
                   <div className="row justify-content-center mt-2">
-                  <label for="area">Rent (Rupees per night): </label>
+                  <label for="area" style={{color: "black"}}>Rent (Rupees per night): </label>
                     <div className="input-group col-md-6" name="price">
                       <input className="form-control form-control-sm" name="price" value={this.state.price} type="number" placeholder="" onChange={this.handleChange}></input>
                     </div>

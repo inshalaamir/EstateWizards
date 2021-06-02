@@ -13,7 +13,7 @@ render(){
     ))
 
     return (
-        <div className="container justify-content-center" style={{height:'500px', overflow:"auto"}}>
+        <div className="ads container justify-content-center" style={{height:'500px', overflow:"auto"}}>
             <div className="row justify-content-center">
             {cards}
             </div>

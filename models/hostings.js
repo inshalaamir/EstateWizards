@@ -51,9 +51,11 @@ const HostingSchema = new mongoose.Schema({
         type: Boolean
     },
 
-    dates:{
-        type:[Date],
-        required:true
+    reservations:{
+        type: [{
+            dates:[Date],
+            user:{type: mongoose.Schema.Types.ObjectId, ref: "user"}
+        }]
     },
     date: {
         type: Date,
@@ -62,5 +64,5 @@ const HostingSchema = new mongoose.Schema({
 
 })
 
-Post = mongoose.model('Hosting', HostingSchema)
-module.exports = Post
+Hosting = mongoose.model('hosting', HostingSchema)
+module.exports = Hosting

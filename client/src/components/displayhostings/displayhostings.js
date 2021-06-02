@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import Axios from 'axios'
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import { Ellipsis} from 'react-spinners-css';
+import "./displayhostings.css"
 
 
 export default class displayhostings extends Component {
@@ -15,7 +17,7 @@ export default class displayhostings extends Component {
         startDate: null,
         endDate: null,
         dates:[],
-        posts:[]
+        posts:[null]
 
     }
 }
@@ -48,8 +50,9 @@ export default class displayhostings extends Component {
           var dates = getDates(this.props.location.state.startDate, this.props.location.state.endDate);
 
         const post = await Axios.get(`http://localhost:5000/host/displayhostings/${dates}/${this.props.location.state.location}`)
-        
+        console.log(post.data.posts)
         this.setState({posts: post.data.posts, location:this.props.location.state.location, startDate: this.props.location.state.startDate, endDate: this.props.location.state.endDate, dates:dates})
+        
 
     }
 
@@ -70,7 +73,7 @@ export default class displayhostings extends Component {
        console.log(this.state.posts)
 
         return (
-            <div className="container">
+            <div className="container displayhostings">
                 {/* <div className="row justify-content-center mt-2">
                     
 
@@ -86,11 +89,13 @@ export default class displayhostings extends Component {
 
                 </div> */}
                 
-                {this.state.posts.length> 0 ? 
-                <div>
-                <Hostings posts={this.state.posts}/>
+                {this.state.posts.includes(null) ? 
+                <div className="viewHosting__loading">
+                <Ellipsis color="white" style={{margin: 0, position: 'absolute', top: '50%'}}/>
                 </div>
-                 :''}
+                 :<div>
+                 <Hostings posts={this.state.posts} dates = {this.state.dates}/>
+                 </div>}
                  
                  
             </div>

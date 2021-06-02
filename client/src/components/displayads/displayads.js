@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Ads from './ads/ads'
 import { useLocation } from "react-router-dom";
 import Axios from 'axios'
+import { Ellipsis} from 'react-spinners-css';
+import "./displayads.css"
 
 export default class displayads extends Component {
     
@@ -47,8 +49,8 @@ export default class displayads extends Component {
        
 
         return (
-            <div className="container">
-                <div className="row justify-content-center mt-2">
+            <div className="container displayads">
+                <div className="row justify-content-center mb-3" style={{padding:"20px"}}>
                     <select name="propertytype" value={this.state.propertytype} class="p-1 col-md-4 form-control form-control-sm" onChange={this.handleChange}>
                         <option value="House">House</option>
                         <option value="Residential Plot">Residential Plot</option>
@@ -74,7 +76,9 @@ export default class displayads extends Component {
                 <div>
                 <Ads posts={this.state.posts}/>
                 </div>
-                 :''}
+                 :<div className="viewHosting__loading">
+                 <Ellipsis color="white" style={{margin: 0, position: 'absolute', top: '50%'}}/>
+                 </div> }
                  {console.log(this.state.posts)}
             </div>
         )

@@ -1,0 +1,24 @@
+.priceTrends{
+    display: flex;
+    justify-content: center;
+    background-color: #2ecc71;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.priceTrends__bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+
+}
+
+.priceTrends__chart{
+    width: 600px;
+    background-color: ghostwhite;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
